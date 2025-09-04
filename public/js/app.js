@@ -2,7 +2,6 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.1/firebas
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js';
 import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, updateDoc } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js';
 
-const db = getFirestore(app);
 document.addEventListener("DOMContentLoaded", () => {
   const firebaseConfig = {
     apiKey: "AIzaSyAcwEb6uhdOjneQ_xjxJsvr7sX-z-SQ3wU",
@@ -15,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
