@@ -1,269 +1,277 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>11 Padel App 🚀</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <div class="login-container" id="loginScreen">
-    <h2>Inicia sesión para continuar</h2>
-    <button id="googleLoginBtn">Iniciar sesión con Google</button>
 
-  </div>
-<div id="adminSection" style="display:none;">
-  <!-- Contenido solo para administradores -->
-  <h2>Zona Admin</h2>
-</div>
-<button id="logoutBtn">Cerrar sesión</button>
-  <div class="wrap" id="mainContent">
-    <!-- TODO: Copia aquí tu HTML original de 2400 líneas, conservando IDs como adminSection, mainContent, logoutBtn, etc -->
-     <div class="padel-court-bg"></div>
-    <div class="container">
-        <!-- Pantalla principal -->
-        <div id="main-screen">
-            <header>
-                <div class="logo">11PadelCrew</div>
-                <div class="subtitle">By Edy Padilla</div>
-            </header>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-trophy"></i>
-                    TORNEO ESTILO AMERICANO
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>11 Padel App 🚀</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="login-container" id="loginScreen">
+        <h2>Inicia sesión para continuar</h2>
+        <button id="googleLoginBtn">Iniciar sesión con Google</button>
+
+    </div>
+    <div id="adminSection" style="display:none;">
+        <!-- Contenido solo para administradores -->
+        <h2>Zona Admin</h2>
+    </div>
+    <button id="logoutBtn">Cerrar sesión</button>
+    <div class="wrap" id="mainContent">
+        <!-- TODO: Copia aquí tu HTML original de 2400 líneas, conservando IDs como adminSection, mainContent, logoutBtn, etc -->
+        <div class="padel-court-bg"></div>
+        <div class="container">
+            <!-- Pantalla principal -->
+            <div id="main-screen">
+                <header>
+                    <div class="logo">11PadelCrew</div>
+                    <div class="subtitle">By Edy Padilla</div>
+                </header>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-trophy"></i>
+                        TORNEO ESTILO AMERICANO
+                    </div>
+                    <div class="card-body">
+                        <h2 style="text-align: center; margin-bottom: 25px; color: var(--padel-blue);">Seleccione una
+                            opción</h2>
+
+                        <div class="btn-container">
+                            <button class="btn btn-primary" onclick="showIndividualModal()">
+                                <i class="fas fa-user"></i> Nuevo Torneo Individual
+                            </button>
+                            <button class="btn btn-secondary" onclick="showTeamModal()">
+                                <i class="fas fa-users"></i> Nuevo Torneo por Equipos
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h2 style="text-align: center; margin-bottom: 25px; color: var(--padel-blue);">Seleccione una opción</h2>
-                    
-                    <div class="btn-container">
-                        <button class="btn btn-primary" onclick="showIndividualModal()">
-                            <i class="fas fa-user"></i> Nuevo Torneo Individual
-                        </button>
-                        <button class="btn btn-secondary" onclick="showTeamModal()">
-                            <i class="fas fa-users"></i> Nuevo Torneo por Equipos
-                        </button>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-history"></i>
+                        TORNEOS GUARDADOS
+                    </div>
+                    <div class="card-body" id="saved-tournaments-container">
+                        <p style="text-align: center; color: var(--padel-gray); padding: 20px;">
+                            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i><br>
+                            No hay torneos guardados
+                        </p>
                     </div>
                 </div>
             </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-history"></i>
-                    TORNEOS GUARDADOS
-                </div>
-                <div class="card-body" id="saved-tournaments-container">
-                    <p style="text-align: center; color: var(--padel-gray); padding: 20px;">
-                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i><br>
-                        No hay torneos guardados
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Pantalla de nombres de jugadores -->
-        <div id="players-screen" class="hidden">
-            <header>
-                <div class="logo">11PadelCrew</div>
-                <div class="subtitle">By Edy Padilla</div>
-            </header>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-users"></i>
-                    <span id="players-title">INGRESE NOMBRES DE JUGADORES</span>
-                </div>
-                <div class="card-body">
-                    <div class="player-inputs" id="players-input-container">
-                        <!-- Los inputs se generarán dinámicamente aquí -->
+
+            <!-- Pantalla de nombres de jugadores -->
+            <div id="players-screen" class="hidden">
+                <header>
+                    <div class="logo">11PadelCrew</div>
+                    <div class="subtitle">By Edy Padilla</div>
+                </header>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-users"></i>
+                        <span id="players-title">INGRESE NOMBRES DE JUGADORES</span>
                     </div>
-                    
-                    <div class="tournament-actions">
-                        <button class="btn btn-sm" onclick="goBackToMain()">
-                            <i class="fas fa-arrow-left"></i> Volver
-                        </button>
-                        <button class="btn btn-sm btn-primary" onclick="startTournament()">
-                            <i class="fas fa-play"></i> Comenzar Torneo
-                        </button>
+                    <div class="card-body">
+                        <div class="player-inputs" id="players-input-container">
+                            <!-- Los inputs se generarán dinámicamente aquí -->
+                        </div>
+
+                        <div class="tournament-actions">
+                            <button class="btn btn-sm" onclick="goBackToMain()">
+                                <i class="fas fa-arrow-left"></i> Volver
+                            </button>
+                            <button class="btn btn-sm btn-primary" onclick="startTournament()">
+                                <i class="fas fa-play"></i> Comenzar Torneo
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Pantalla de torneo -->
-        <div id="tournament-screen" class="hidden">
-            <header>
-                <div class="logo">11PadelCrew</div>
-                <div class="subtitle">By Edy Padilla</div>
-            </header>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-trophy"></i>
-                    <span id="tournament-title">TORNEO 6 JUGADORES</span>
-                </div>
-                <div class="card-body">
-                    <div class="tabs">
-                        <div class="tab active" data-tab="matches">Partidos</div>
-                        <div class="tab" data-tab="standings">Clasificación</div>
-                        <div class="tab" data-tab="players">Jugadores</div>
+
+            <!-- Pantalla de torneo -->
+            <div id="tournament-screen" class="hidden">
+                <header>
+                    <div class="logo">11PadelCrew</div>
+                    <div class="subtitle">By Edy Padilla</div>
+                </header>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-trophy"></i>
+                        <span id="tournament-title">TORNEO 6 JUGADORES</span>
                     </div>
-                    
-                    <!-- Pestaña de partidos -->
-                    <div class="tab-content active" id="matches-content">
-                        <div class="round-nav" id="round-nav">
-                            <!-- Los botones de ronda se generarán dinámicamente aquí -->
+                    <div class="card-body">
+                        <div class="tabs">
+                            <div class="tab active" data-tab="matches">Partidos</div>
+                            <div class="tab" data-tab="standings">Clasificación</div>
+                            <div class="tab" data-tab="players">Jugadores</div>
                         </div>
-                        
-                        <div class="cycle-info" id="cycle-info">
-                            Jornada 1 de 2
-                        </div>
-                        
-                        <h3 style="text-align: center; margin-bottom: 20px; color: var(--padel-blue);" id="round-title">Ronda 1</h3>
-                        
-                        <div class="match-grid" id="matches-container">
-                            <!-- Los partidos se generarán dinámicamente aquí -->
-                        </div>
-                        
-                        <!-- Jugadores que descansan -->
-                        <div id="rest-container" class="rest-info">
-                            <h3 style="text-align: center; color: var(--padel-gray);">Jugadores que descansan esta ronda:</h3>
-                            <div class="rest-list" id="resting-players-container">
-                                <!-- Jugadores en descanso se mostrarán aquí -->
+
+                        <!-- Pestaña de partidos -->
+                        <div class="tab-content active" id="matches-content">
+                            <div class="round-nav" id="round-nav">
+                                <!-- Los botones de ronda se generarán dinámicamente aquí -->
+                            </div>
+
+                            <div class="cycle-info" id="cycle-info">
+                                Jornada 1 de 2
+                            </div>
+
+                            <h3 style="text-align: center; margin-bottom: 20px; color: var(--padel-blue);"
+                                id="round-title">Ronda 1</h3>
+
+                            <div class="match-grid" id="matches-container">
+                                <!-- Los partidos se generarán dinámicamente aquí -->
+                            </div>
+
+                            <!-- Jugadores que descansan -->
+                            <div id="rest-container" class="rest-info">
+                                <h3 style="text-align: center; color: var(--padel-gray);">Jugadores que descansan esta
+                                    ronda:</h3>
+                                <div class="rest-list" id="resting-players-container">
+                                    <!-- Jugadores en descanso se mostrarán aquí -->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Pestaña de clasificación -->
-                    <div class="tab-content" id="standings-content">
-                        <div class="filters">
-                            <div class="filter-btn active" data-sort="points">Por puntos</div>
-                            <div class="filter-btn" data-sort="diff">Por diferencia</div>
-                            <div class="filter-btn" data-sort="pg">Por victorias</div>
-                        </div>
-                        
-                        <div class="standings-container">
-                            <table id="standings-table">
-                                <thead>
-                                    <tr>
-                                        <th>Pos</th>
-                                        <th>Nombre</th>
-                                        <th>PJ</th>
-                                        <th>PG</th>
-                                        <th>PE</th>
-                                        <th>PP</th>
-                                        <th>PF</th>
-                                        <th>PC</th>
-                                        <th>Dif</th>
-                                        <th>Pts</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="standings-body">
-                                    <!-- Los datos de clasificación se generarán dinámicamente aquí -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- Pestaña de jugadores -->
-                    <div class="tab-content" id="players-content">
-                        <div class="players-container" id="players-container">
-                            <!-- Las tarjetas de jugadores se generarán dinámicamente aquí -->
-                        </div>
-                    </div>
-                    
-                    <div class="tournament-actions">
-                        <button class="btn btn-sm btn-primary" onclick="saveTournament()">
-                            <i class="fas fa-save"></i> Guardar Cambios
-                        </button>
-                        <button class="btn btn-sm btn-accent" id="next-round-btn" onclick="nextRound()">
-                            <i class="fas fa-forward"></i> Siguiente Ronda
-                        </button>
-                        <button class="btn btn-sm btn-accent" id="finish-tournament-btn" onclick="finishTournament()">
-                            <i class="fas fa-flag-checkered"></i> Finalizar Jornada
-                        </button>
-                        <button class="btn btn-sm btn-primary" id="continue-tournament-btn" onclick="continueTournament()">
-                            <i class="fas fa-plus-circle"></i> Continuar Nueva Jornada
-                        </button>
-                        <button class="btn btn-sm" onclick="goBackToMainFromTournament()">
-                            <i class="fas fa-home"></i> Volver al Inicio
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Modal Individual -->
-        <div class="modal" id="individual-modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3><i class="fas fa-user"></i> Torneo Individual</h3>
-                    <i class="fas fa-times close-modal" onclick="closeModal('individual-modal')"></i>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group">
-                        <label>Número de jugadores</label>
-                        <select id="player-count">
-                            <option value="4">4 jugadores</option>
-                            <option value="5">5 jugadores</option>
-                            <option value="6" selected>6 jugadores</option>
-                            <option value="7">7 jugadores</option>
-                            <option value="8">8 jugadores</option>
-                            <option value="9">9 jugadores</option>
-                            <option value="10">10 jugadores</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Nombre del torneo (opcional)</label>
-                        <input type="text" id="tournament-name" placeholder="Ej: Torneo Verano 2023">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-sm" onclick="closeModal('individual-modal')">Cancelar</button>
-                    <button class="btn btn-sm btn-primary" onclick="confirmIndividualTournament()">Continuar</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Modal Equipos -->
-        <div class="modal" id="team-modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3><i class="fas fa-users"></i> Torneo por Equipos</h3>
-                    <i class="fas fa-times close-modal" onclick="closeModal('team-modal')"></i>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group">
-                        <label>Número de equipos (parejas)</label>
-                        <select id="team-count">
-                            <option value="2">2 equipos</option>
-                            <option value="3">3 equipos</option>
-                            <option value="4">4 equipos</option>
-                            <option value="5">5 equipos</option>
-                            <option value="6" selected>6 equipos</option>
-                            <option value="7">7 equipos</option>
-                            <option value="8">8 equipos</option>
-                            <option value="9">9 equipos</option>
-                            <option value="10">10 equipos</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Nombre del torneo (opcional)</label>
-                        <input type="text" id="team-tournament-name" placeholder="Ej: Liga Empresa 2023">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-sm" onclick="closeModal('team-modal')">Cancelar</button>
-                    <button class="btn btn-sm btn-secondary" onclick="confirmTeamTournament()">Continuar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-  </div>
- <script>
+                        <!-- Pestaña de clasificación -->
+                        <div class="tab-content" id="standings-content">
+                            <div class="filters">
+                                <div class="filter-btn active" data-sort="points">Por puntos</div>
+                                <div class="filter-btn" data-sort="diff">Por diferencia</div>
+                                <div class="filter-btn" data-sort="pg">Por victorias</div>
+                            </div>
+
+                            <div class="standings-container">
+                                <table id="standings-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pos</th>
+                                            <th>Nombre</th>
+                                            <th>PJ</th>
+                                            <th>PG</th>
+                                            <th>PE</th>
+                                            <th>PP</th>
+                                            <th>PF</th>
+                                            <th>PC</th>
+                                            <th>Dif</th>
+                                            <th>Pts</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="standings-body">
+                                        <!-- Los datos de clasificación se generarán dinámicamente aquí -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Pestaña de jugadores -->
+                        <div class="tab-content" id="players-content">
+                            <div class="players-container" id="players-container">
+                                <!-- Las tarjetas de jugadores se generarán dinámicamente aquí -->
+                            </div>
+                        </div>
+
+                        <div class="tournament-actions">
+                            <button class="btn btn-sm btn-primary" onclick="saveTournament()">
+                                <i class="fas fa-save"></i> Guardar Cambios
+                            </button>
+                            <button class="btn btn-sm btn-accent" id="next-round-btn" onclick="nextRound()">
+                                <i class="fas fa-forward"></i> Siguiente Ronda
+                            </button>
+                            <button class="btn btn-sm btn-accent" id="finish-tournament-btn"
+                                onclick="finishTournament()">
+                                <i class="fas fa-flag-checkered"></i> Finalizar Jornada
+                            </button>
+                            <button class="btn btn-sm btn-primary" id="continue-tournament-btn"
+                                onclick="continueTournament()">
+                                <i class="fas fa-plus-circle"></i> Continuar Nueva Jornada
+                            </button>
+                            <button class="btn btn-sm" onclick="goBackToMainFromTournament()">
+                                <i class="fas fa-home"></i> Volver al Inicio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Individual -->
+            <div class="modal" id="individual-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-user"></i> Torneo Individual</h3>
+                        <i class="fas fa-times close-modal" onclick="closeModal('individual-modal')"></i>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <label>Número de jugadores</label>
+                            <select id="player-count">
+                                <option value="4">4 jugadores</option>
+                                <option value="5">5 jugadores</option>
+                                <option value="6" selected>6 jugadores</option>
+                                <option value="7">7 jugadores</option>
+                                <option value="8">8 jugadores</option>
+                                <option value="9">9 jugadores</option>
+                                <option value="10">10 jugadores</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Nombre del torneo (opcional)</label>
+                            <input type="text" id="tournament-name" placeholder="Ej: Torneo Verano 2023">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm" onclick="closeModal('individual-modal')">Cancelar</button>
+                        <button class="btn btn-sm btn-primary"
+                            onclick="confirmIndividualTournament()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Equipos -->
+            <div class="modal" id="team-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-users"></i> Torneo por Equipos</h3>
+                        <i class="fas fa-times close-modal" onclick="closeModal('team-modal')"></i>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <label>Número de equipos (parejas)</label>
+                            <select id="team-count">
+                                <option value="2">2 equipos</option>
+                                <option value="3">3 equipos</option>
+                                <option value="4">4 equipos</option>
+                                <option value="5">5 equipos</option>
+                                <option value="6" selected>6 equipos</option>
+                                <option value="7">7 equipos</option>
+                                <option value="8">8 equipos</option>
+                                <option value="9">9 equipos</option>
+                                <option value="10">10 equipos</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Nombre del torneo (opcional)</label>
+                            <input type="text" id="team-tournament-name" placeholder="Ej: Liga Empresa 2023">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm" onclick="closeModal('team-modal')">Cancelar</button>
+                        <button class="btn btn-sm btn-secondary" onclick="confirmTeamTournament()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
         // Datos del torneo
         let tournamentData = {
             mode: null,
@@ -280,22 +288,22 @@
         };
 
         // Al cargar la página, cargar torneos guardados
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadSavedTournaments();
-            
+
             // Manejo de pestañas
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', () => {
                     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-                    
+
                     document.querySelectorAll('.tab-content').forEach(content => {
                         content.classList.remove('active');
                     });
-                    
+
                     const tabId = tab.getAttribute('data-tab');
                     document.getElementById(`${tabId}-content`).classList.add('active');
-                    
+
                     if (tabId === 'standings') updateStandingsTable();
                     if (tabId === 'players') updatePlayersTab();
                 });
@@ -331,15 +339,15 @@
         function loadSavedTournaments() {
             const container = document.getElementById('saved-tournaments-container');
             container.innerHTML = '';
-            
+
             let hasSavedTournaments = false;
-            
+
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 if (key.startsWith('tournament_')) {
                     hasSavedTournaments = true;
                     const tournament = JSON.parse(localStorage.getItem(key));
-                    
+
                     const tournamentElement = document.createElement('div');
                     tournamentElement.className = 'saved-tournament';
                     tournamentElement.innerHTML = `
@@ -349,17 +357,17 @@
                         <p><strong>Progreso:</strong> Ronda ${tournament.currentRound} de ${tournament.totalRounds}</p>
                         <button class="delete-btn" onclick="deleteTournament('${key}', event)"><i class="fas fa-trash"></i> Eliminar</button>
                     `;
-                    
-                    tournamentElement.addEventListener('click', function(e) {
+
+                    tournamentElement.addEventListener('click', function (e) {
                         if (!e.target.classList.contains('delete-btn')) {
                             continueSavedTournament(key);
                         }
                     });
-                    
+
                     container.appendChild(tournamentElement);
                 }
             }
-            
+
             if (!hasSavedTournaments) {
                 container.innerHTML = `
                     <p style="text-align: center; color: var(--padel-gray); padding: 20px;">
@@ -406,75 +414,118 @@
         function showIndividualModal() {
             document.getElementById('individual-modal').classList.add('active');
         }
-        
+
         function showTeamModal() {
             document.getElementById('team-modal').classList.add('active');
         }
-        
+
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
         }
-        
+
         // Confirmar torneo individual
-        function confirmIndividualTournament() {
+        // Confirmar torneo individual
+        async function confirmIndividualTournament() {
+            const user = auth.currentUser;
+            const tokenResult = await user.getIdTokenResult();
+            if (!tokenResult.claims.admin) {
+                alert("Solo admins pueden crear partidas");
+                return;
+            }
+
             const playerCount = parseInt(document.getElementById('player-count').value);
             const tournamentName = document.getElementById('tournament-name').value;
-            
-            tournamentData.mode = 'individual';
-            tournamentData.title = tournamentName || `Torneo Individual - ${playerCount} Jugadores`;
-            
+
+            // Generar código único
+            const code = generateMatchCode();
+
+            // Guardar torneo en Firestore
+            await addDoc(collection(db, "matches"), {
+                name: tournamentName || `Torneo Individual - ${playerCount} Jugadores`,
+                type: "individual",
+                players: [],
+                createdBy: user.uid,
+                code,
+                status: "pending",
+                createdAt: serverTimestamp(),
+                playerCount
+            });
+
+            alert(`Partida creada con código: ${code}`);
+
             // Generar inputs para nombres de jugadores
             const container = document.getElementById('players-input-container');
             container.innerHTML = '';
-            
+
             for (let i = 1; i <= playerCount; i++) {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player-input';
                 playerDiv.innerHTML = `
-                    <i class="fas fa-user"></i>
-                    <input type="text" class="player-name" placeholder="Jugador ${i}" required>
-                `;
+            <i class="fas fa-user"></i>
+            <input type="text" class="player-name" placeholder="Jugador ${i}" required>
+        `;
                 container.appendChild(playerDiv);
             }
-            
+
             // Actualizar título
             document.getElementById('players-title').textContent = `INGRESE NOMBRES DE ${playerCount} JUGADORES`;
-            
+
             closeModal('individual-modal');
             document.getElementById('main-screen').classList.add('hidden');
             document.getElementById('players-screen').classList.remove('hidden');
         }
-        
+
         // Confirmar torneo por equipos
-        function confirmTeamTournament() {
+        async function confirmTeamTournament() {
+            const user = auth.currentUser;
+            const tokenResult = await user.getIdTokenResult();
+            if (!tokenResult.claims.admin) {
+                alert("Solo admins pueden crear partidas");
+                return;
+            }
+
             const teamCount = parseInt(document.getElementById('team-count').value);
             const tournamentName = document.getElementById('team-tournament-name').value;
-            
-            tournamentData.mode = 'teams';
-            tournamentData.title = tournamentName || `Torneo por Equipos - ${teamCount} Equipos`;
-            
+
+            // Generar código único
+            const code = generateMatchCode();
+
+            // Guardar torneo en Firestore
+            await addDoc(collection(db, "matches"), {
+                name: tournamentName || `Torneo por Equipos - ${teamCount} Equipos`,
+                type: "team",
+                teams: [],
+                createdBy: user.uid,
+                code,
+                status: "pending",
+                createdAt: serverTimestamp(),
+                teamCount
+            });
+
+            alert(`Partida creada con código: ${code}`);
+
             // Generar inputs para nombres de equipos
             const container = document.getElementById('players-input-container');
             container.innerHTML = '';
-            
+
             for (let i = 1; i <= teamCount; i++) {
                 const teamDiv = document.createElement('div');
                 teamDiv.className = 'player-input';
                 teamDiv.innerHTML = `
-                    <i class="fas fa-users"></i>
-                    <input type="text" class="player-name" placeholder="Equipo ${i}" required>
-                `;
+            <i class="fas fa-users"></i>
+            <input type="text" class="player-name" placeholder="Equipo ${i}" required>
+        `;
                 container.appendChild(teamDiv);
             }
-            
+
             // Actualizar título
             document.getElementById('players-title').textContent = `INGRESE NOMBRES DE ${teamCount} EQUIPOS`;
-            
+
             closeModal('team-modal');
             document.getElementById('main-screen').classList.add('hidden');
             document.getElementById('players-screen').classList.remove('hidden');
         }
-        
+
         // Volver al menú principal
         function goBackToMain() {
             document.getElementById('players-screen').classList.add('hidden');
@@ -489,19 +540,26 @@
                 loadSavedTournaments();
             }
         }
-        
+        function generateMatchCode(length = 6) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < length; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
         // Comenzar el torneo
         function startTournament() {
             // Obtener nombres de jugadores/equipos
             const nameInputs = document.querySelectorAll('.player-name');
             const names = Array.from(nameInputs).map(input => input.value.trim());
-            
+
             // Validar que todos los nombres estén completos
             if (names.some(name => name === '')) {
                 alert('Por favor, ingresa todos los nombres');
                 return;
             }
-            
+
             // Guardar en tournamentData
             if (tournamentData.mode === 'individual') {
                 tournamentData.players = names.map(name => ({
@@ -526,13 +584,13 @@
                     points: 0
                 }));
             }
-            
+
             // Inicializar contador de partidos
             tournamentData.matchCounter = 0;
-            
+
             // Generar todas las rondas
             generateRounds();
-            
+
             // Actualizar interfaz
             document.getElementById('tournament-title').textContent = tournamentData.title;
             document.getElementById('players-screen').classList.add('hidden');
@@ -541,7 +599,7 @@
             updateStandings();
             updatePlayersTab();
             updateCycleInfo();
-            
+
             // Guardar en localStorage
             saveTournamentToStorage();
         }
@@ -557,9 +615,9 @@
             if (tournamentData.mode === 'individual') {
                 const playerNames = tournamentData.players.map(p => p.name);
                 const playerCount = playerNames.length;
-                
+
                 tournamentData.rounds = [];
-                
+
                 // Generar rondas para diferentes cantidades de jugadores
                 if (playerCount === 4) {
                     tournamentData.rounds = generateRoundRobin4Players(playerNames);
@@ -576,27 +634,27 @@
                 } else if (playerCount === 10) {
                     tournamentData.rounds = generateRoundRobin10Players(playerNames);
                 }
-                
+
                 tournamentData.totalRounds = tournamentData.rounds.length;
             } else {
                 // Lógica para torneo por equipos (simplificada)
                 const teamNames = tournamentData.teams.map(t => t.name);
                 tournamentData.rounds = [];
                 tournamentData.totalRounds = teamNames.length - 1;
-                
+
                 for (let i = 0; i < tournamentData.totalRounds; i++) {
                     const matches = [];
                     const resting = [];
-                    
+
                     // Calcular equipos en descanso
                     const restCount = teamNames.length % 2;
                     if (restCount > 0) {
                         resting.push(teamNames[teamNames.length - 1]);
                     }
-                    
+
                     // Equipos que participan
                     const playingTeams = restCount > 0 ? teamNames.slice(0, teamNames.length - restCount) : teamNames;
-                    
+
                     // Crear partidos
                     for (let j = 0; j < playingTeams.length; j += 2) {
                         matches.push({
@@ -608,12 +666,12 @@
                             played: false
                         });
                     }
-                    
+
                     tournamentData.rounds.push({
                         matches: matches,
                         resting: resting
                     });
-                    
+
                     // Rotar equipos para la siguiente ronda
                     teamNames.splice(1, 0, teamNames.pop());
                 }
@@ -858,14 +916,14 @@
             for (let i = 0; i < 7; i++) {
                 const matches = [];
                 const resting = [];
-                
+
                 // Calcular jugadores en descanso (2 por ronda)
                 resting.push(playerNames[i % 7]);
                 resting.push(playerNames[(i + 1) % 7]);
-                
+
                 // Jugadores que participan
                 const playingPlayers = playerNames.filter(p => !resting.includes(p));
-                
+
                 // Crear partidos
                 matches.push({
                     id: generateMatchId(),
@@ -877,7 +935,7 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 rounds.push({
                     matches: matches,
                     resting: resting
@@ -892,11 +950,11 @@
             for (let i = 0; i < 7; i++) {
                 const matches = [];
                 const resting = [];
-                
+
                 // Calcular jugadores en descanso (ninguno para 8 jugadores)
                 // Jugadores que participan
                 const playingPlayers = [...playerNames];
-                
+
                 // Crear partidos (2 partidos por ronda)
                 matches.push({
                     id: generateMatchId(),
@@ -908,7 +966,7 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 matches.push({
                     id: generateMatchId(),
                     team1: `${playingPlayers[4]} & ${playingPlayers[5]}`,
@@ -919,12 +977,12 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 rounds.push({
                     matches: matches,
                     resting: resting
                 });
-                
+
                 // Rotar jugadores para la siguiente ronda
                 playerNames.push(playerNames.shift());
             }
@@ -937,13 +995,13 @@
             for (let i = 0; i < 9; i++) {
                 const matches = [];
                 const resting = [];
-                
+
                 // Calcular jugadores en descanso (1 por ronda)
                 resting.push(playerNames[i % 9]);
-                
+
                 // Jugadores que participan
                 const playingPlayers = playerNames.filter(p => !resting.includes(p));
-                
+
                 // Crear partidos (2 partidos por ronda)
                 matches.push({
                     id: generateMatchId(),
@@ -955,7 +1013,7 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 matches.push({
                     id: generateMatchId(),
                     team1: `${playingPlayers[4]} & ${playingPlayers[5]}`,
@@ -966,7 +1024,7 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 rounds.push({
                     matches: matches,
                     resting: resting
@@ -981,11 +1039,11 @@
             for (let i = 0; i < 9; i++) {
                 const matches = [];
                 const resting = [];
-                
+
                 // Calcular jugadores en descanso (ninguno para 10 jugadores)
                 // Jugadores que participan
                 const playingPlayers = [...playerNames];
-                
+
                 // Crear partidos (2 partidos por ronda)
                 matches.push({
                     id: generateMatchId(),
@@ -997,7 +1055,7 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 matches.push({
                     id: generateMatchId(),
                     team1: `${playingPlayers[4]} & ${playingPlayers[5]}`,
@@ -1008,7 +1066,7 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 matches.push({
                     id: generateMatchId(),
                     team1: `${playingPlayers[8]} & ${playingPlayers[9]}`,
@@ -1019,12 +1077,12 @@
                     score2: 0,
                     played: false
                 });
-                
+
                 rounds.push({
                     matches: matches,
                     resting: resting
                 });
-                
+
                 // Rotar jugadores para la siguiente ronda
                 playerNames.push(playerNames.shift());
             }
@@ -1037,7 +1095,7 @@
                 const playerNames = tournamentData.players.map(p => p.name);
                 const playerCount = playerNames.length;
                 let newRounds = [];
-                
+
                 // Generar nuevas rondas para la nueva jornada
                 if (playerCount === 4) {
                     newRounds = generateRoundRobin4Players(playerNames);
@@ -1054,7 +1112,7 @@
                 } else if (playerCount === 10) {
                     newRounds = generateRoundRobin10Players(playerNames);
                 }
-                
+
                 // Agregar las nuevas rondas a las existentes
                 tournamentData.rounds = [...tournamentData.rounds, ...newRounds];
                 tournamentData.totalRounds = tournamentData.rounds.length;
@@ -1062,21 +1120,21 @@
                 // Lógica similar para torneos por equipos
                 const teamNames = tournamentData.teams.map(t => t.name);
                 const newRounds = [];
-                
+
                 // Crear nuevas rondas usando el método round-robin
                 for (let i = 0; i < teamNames.length - 1; i++) {
                     const matches = [];
                     const resting = [];
-                    
+
                     // Calcular equipos en descanso
                     const restCount = teamNames.length % 2;
                     if (restCount > 0) {
                         resting.push(teamNames[teamNames.length - 1]);
                     }
-                    
+
                     // Equipos que participan
                     const playingTeams = restCount > 0 ? teamNames.slice(0, teamNames.length - restCount) : teamNames;
-                    
+
                     // Crear partidos
                     for (let j = 0; j < playingTeams.length; j += 2) {
                         matches.push({
@@ -1088,16 +1146,16 @@
                             played: false
                         });
                     }
-                    
+
                     newRounds.push({
                         matches: matches,
                         resting: resting
                     });
-                    
+
                     // Rotar equipos para la siguiente ronda
                     teamNames.splice(1, 0, teamNames.pop());
                 }
-                
+
                 // Agregar las nuevas rondas a las existentes
                 tournamentData.rounds = [...tournamentData.rounds, ...newRounds];
                 tournamentData.totalRounds = tournamentData.rounds.length;
@@ -1108,7 +1166,7 @@
         function updateRoundNav() {
             const roundNav = document.getElementById('round-nav');
             roundNav.innerHTML = '';
-            
+
             for (let i = 1; i <= tournamentData.totalRounds; i++) {
                 const roundBtn = document.createElement('div');
                 roundBtn.className = `round-btn ${i === tournamentData.currentRound ? 'active' : ''}`;
@@ -1136,16 +1194,16 @@
             const restingPlayersContainer = document.getElementById('resting-players-container');
             matchesContainer.innerHTML = '';
             restingPlayersContainer.innerHTML = '';
-            
+
             const currentRound = tournamentData.rounds[tournamentData.currentRound - 1];
-            
+
             if (!currentRound) return;
-            
+
             // Mostrar partidos
             currentRound.matches.forEach((match, index) => {
                 const matchCard = document.createElement('div');
                 matchCard.className = 'match-card';
-                
+
                 // Determinar si hay un ganador para este partido
                 if (match.score1 > match.score2) {
                     matchCard.classList.add('winner-1');
@@ -1154,7 +1212,7 @@
                 } else if (match.score1 > 0 || match.score2 > 0) {
                     matchCard.classList.add('draw');
                 }
-                
+
                 matchCard.innerHTML = `
                     <div class="winner-badge team1">${match.team1} gana</div>
                     <div class="winner-badge team2">${match.team2} gana</div>
@@ -1165,8 +1223,8 @@
                     <div class="teams-container">
                         <div class="team">
                             <div class="team-name">${match.team1}</div>
-                            ${tournamentData.mode === 'individual' ? 
-                                `<div class="team-players">${match.players1 ? match.players1.join(' & ') : 'Jugadores'}</div>` : ''}
+                            ${tournamentData.mode === 'individual' ?
+                        `<div class="team-players">${match.players1 ? match.players1.join(' & ') : 'Jugadores'}</div>` : ''}
                             <div class="score-container">
                                 <button class="score-btn" onclick="adjustScore('${match.id}', 'score1', -1)">-</button>
                                 <input type="number" class="score-input" value="${match.score1}" min="0" max="99" 
@@ -1177,8 +1235,8 @@
                         <div class="vs">VS</div>
                         <div class="team">
                             <div class="team-name">${match.team2}</div>
-                            ${tournamentData.mode === 'individual' ? 
-                                `<div class="team-players">${match.players2 ? match.players2.join(' & ') : 'Jugadores'}</div>` : ''}
+                            ${tournamentData.mode === 'individual' ?
+                        `<div class="team-players">${match.players2 ? match.players2.join(' & ') : 'Jugadores'}</div>` : ''}
                             <div class="score-container">
                                 <button class="score-btn" onclick="adjustScore('${match.id}', 'score2', -1)">-</button>
                                 <input type="number" class="score-input" value="${match.score2}" min="0" max="99" 
@@ -1190,7 +1248,7 @@
                 `;
                 matchesContainer.appendChild(matchCard);
             });
-            
+
             // Mostrar jugadores/equipos que descansan
             if (currentRound.resting && currentRound.resting.length > 0) {
                 currentRound.resting.forEach(player => {
@@ -1209,10 +1267,10 @@
                 if (matchIndex !== -1) {
                     const currentValue = round.matches[matchIndex][scoreType];
                     const newValue = Math.max(0, currentValue + value);
-                    
+
                     round.matches[matchIndex][scoreType] = newValue;
                     round.matches[matchIndex].played = newValue > 0 || round.matches[matchIndex][scoreType === 'score1' ? 'score2' : 'score1'] > 0;
-                    
+
                     // Actualizar la interfaz
                     updateStandings();
                     updateMatchesTab();
@@ -1267,22 +1325,22 @@
                 round.matches.forEach(match => {
                     const score1 = match.score1;
                     const score2 = match.score2;
-                    
+
                     // Solo procesar partidos que se hayan jugado (al menos un punto)
                     if (score1 === 0 && score2 === 0) return;
-                    
+
                     if (tournamentData.mode === 'individual') {
                         // Actualizar estadísticas para cada jugador individualmente
                         const players1 = match.players1;
                         const players2 = match.players2;
-                        
+
                         players1.forEach(playerName => {
                             const player = tournamentData.players.find(p => p.name === playerName);
                             if (player) {
                                 player.pf += score1;
                                 player.pc += score2;
                                 player.diff = player.pf - player.pc;
-                                
+
                                 if (score1 > score2) {
                                     player.pg++;
                                     player.points += 3;
@@ -1294,14 +1352,14 @@
                                 }
                             }
                         });
-                        
+
                         players2.forEach(playerName => {
                             const player = tournamentData.players.find(p => p.name === playerName);
                             if (player) {
                                 player.pf += score2;
                                 player.pc += score1;
                                 player.diff = player.pf - player.pc;
-                                
+
                                 if (score2 > score1) {
                                     player.pg++;
                                     player.points += 3;
@@ -1317,16 +1375,16 @@
                         // Modo por equipos
                         const team1 = tournamentData.teams.find(t => t.name === match.team1);
                         const team2 = tournamentData.teams.find(t => t.name === match.team2);
-                        
+
                         if (team1 && team2) {
                             team1.pf += score1;
                             team1.pc += score2;
                             team2.pf += score2;
                             team2.pc += score1;
-                            
+
                             team1.diff = team1.pf - team1.pc;
                             team2.diff = team2.pf - team2.pc;
-                            
+
                             if (score1 > score2) {
                                 team1.pg++;
                                 team1.points += 3;
@@ -1345,7 +1403,7 @@
                     }
                 });
             });
-            
+
             // Actualizar tabla
             updateStandingsTable();
         }
@@ -1354,13 +1412,13 @@
         function updateStandingsTable() {
             const sortBy = document.querySelector('.filter-btn.active')?.dataset.sort || 'points';
             let participants;
-            
+
             if (tournamentData.mode === 'individual') {
                 participants = [...tournamentData.players];
             } else {
                 participants = [...tournamentData.teams];
             }
-                
+
             if (sortBy === 'points') {
                 participants.sort((a, b) => {
                     if (b.points !== a.points) return b.points - a.points;
@@ -1380,18 +1438,18 @@
                     return b.diff - a.diff;
                 });
             }
-            
+
             const tbody = document.getElementById('standings-body');
             tbody.innerHTML = '';
-            
+
             participants.forEach((participant, index) => {
                 const row = document.createElement('tr');
-                
+
                 let rowClass = '';
                 if (index === 0) rowClass = 'pos-1';
                 else if (index === 1) rowClass = 'pos-2';
                 else if (index === 2) rowClass = 'pos-3';
-                
+
                 row.className = rowClass;
                 row.innerHTML = `
                     <td>${index + 1}</td>
@@ -1413,22 +1471,22 @@
         function updatePlayersTab() {
             const container = document.getElementById('players-container');
             container.innerHTML = '';
-            
+
             let participants;
-            
+
             if (tournamentData.mode === 'individual') {
                 participants = [...tournamentData.players];
             } else {
                 participants = [...tournamentData.teams];
             }
-            
+
             // Ordenar por puntos
             const sortedParticipants = [...participants].sort((a, b) => b.points - a.points);
-            
+
             sortedParticipants.forEach(participant => {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
-                
+
                 if (tournamentData.mode === 'individual') {
                     playerCard.innerHTML = `
                         <h3>${participant.name}</h3>
@@ -1468,15 +1526,15 @@
         function continueTournament() {
             // Incrementar el número de ciclo/jornada
             tournamentData.currentCycle++;
-            
+
             // Guardar el estado actual de los participantes con sus estadísticas
-            const currentParticipants = tournamentData.mode === 'individual' 
-                ? JSON.parse(JSON.stringify(tournamentData.players)) 
+            const currentParticipants = tournamentData.mode === 'individual'
+                ? JSON.parse(JSON.stringify(tournamentData.players))
                 : JSON.parse(JSON.stringify(tournamentData.teams));
-            
+
             // Generar nuevas rondas para la nueva jornada
             generateNewCycleRounds();
-            
+
             // Restaurar las estadísticas de los participantes
             if (tournamentData.mode === 'individual') {
                 tournamentData.players.forEach(player => {
@@ -1505,10 +1563,10 @@
                     }
                 });
             }
-            
+
             // Reiniciar la ronda actual a la primera de la nueva jornada
             tournamentData.currentRound = 1;
-            
+
             alert(`¡Nueva jornada ${tournamentData.currentCycle} iniciada! Los puntos se mantienen.`);
             updateCycleInfo();
             showRound(1);
@@ -1522,6 +1580,7 @@
             alert('Progreso guardado correctamente');
         }
     </script>
-  <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
+
 </html>
